@@ -172,7 +172,7 @@ namespace QUANLYPHONGKHAM
                 }
             }
         }
-
+        // Hello
         private void btnXoa_Click(object sender, EventArgs e)
         {
             int i = dgvDSThuoc.CurrentRow.Index;
