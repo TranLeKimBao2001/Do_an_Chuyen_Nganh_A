@@ -48,14 +48,13 @@ namespace QUANLYPHONGKHAM
         }
         private void btnThem_Click(object sender, EventArgs e)
         {
-            string tenLThuoc = txtTenLopThuoc.Text;
-            string GhiChu = rtbGhiChu.Text;
-            if (tenLThuoc.Length == 0)
+            
+            if (txtTenLopThuoc.Text.Length == 0)
             {
                 MessageBox.Show("Nhap tên lớp thuốc!");
                 return;
             }
-            if (GhiChu.Length == 0)
+            if (rtbGhiChu.Text.Length == 0)
             {
                 MessageBox.Show("nhap ghi chu!");
                 return;
@@ -65,8 +64,8 @@ namespace QUANLYPHONGKHAM
                 DTO.LopThuoc lopThuoc = new DTO.LopThuoc()
                 {
                     MaLopThuoc = 0,
-                    tenLopThuoc = tenLThuoc,
-                    Ghichu = GhiChu,
+                    tenLopThuoc = txtTenLopThuoc.Text,
+                    Ghichu = rtbGhiChu.Text,
 
 
 

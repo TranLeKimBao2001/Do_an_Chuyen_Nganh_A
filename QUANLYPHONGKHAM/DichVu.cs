@@ -22,7 +22,7 @@ namespace QUANLYPHONGKHAM
         public DichVu(DTO.DichVu dichVu) : this()
         {
             List<DTO.LoaiDichVu> loaiDichVus = new LoaiDichVuBUS().getAllLoaiDichVus();
-         
+
             cbbTenDichVu.DataSource = loaiDichVus;
             cbbTenDichVu.DisplayMember = "tenLoaiDichVu";
             cbbTenDichVu.ValueMember = "MaLoaiDichVu";
@@ -44,7 +44,7 @@ namespace QUANLYPHONGKHAM
             cbbdonViDo.SelectedItem = null;
             cbbTenDichVu.SelectedItem = null;
         }
-     
+
         public void CauHinhData()
         {
             dgvDichVu.Columns[0].HeaderText = "Mã Dịch vụ";
@@ -81,21 +81,13 @@ namespace QUANLYPHONGKHAM
                 MessageBox.Show("Nhập gia DV");
                 return;
             }
-            if (cbbdonViDo.SelectedIndex == null)
-            {
-                MessageBox.Show("Nhập don vi do");
-                return;
-            }
+           
             if (txtGhichu.Text.Length == 0)
             {
                 MessageBox.Show("Nhập ghi chu");
                 return;
             }
-            if (cbbTenDichVu.SelectedIndex == null)
-            {
-                MessageBox.Show("chon ten dich vu");
-                return;
-            }
+           
             if (txtMaDV.Text == "")
             {
                 DTO.DichVu dv = new DTO.DichVu()
@@ -105,7 +97,7 @@ namespace QUANLYPHONGKHAM
                     gia = Int32.Parse(nbrGia.Value.ToString()),
                     donViTinh = cbbdonViDo.Text,
                     ghiChu = txtGhichu.Text,
-                    MaLoaiDichVU = Int32.Parse(cbbTenDichVu.SelectedValue.ToString())-1
+                    MaLoaiDichVU = Int32.Parse(cbbTenDichVu.SelectedValue.ToString()) - 1
                 };
                 bool result2 = new DichVuBUS().AddNewDichVu(dv);
                 if (result2)
@@ -197,6 +189,11 @@ namespace QUANLYPHONGKHAM
             {
                 MessageBox.Show("Chọn 1 dòng để XÓA");
             }
+        }
+
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

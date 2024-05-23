@@ -151,6 +151,7 @@
             txtmatKhau.Name = "txtmatKhau";
             txtmatKhau.Size = new Size(352, 34);
             txtmatKhau.TabIndex = 10;
+            txtmatKhau.UseSystemPasswordChar = true;
             // 
             // label11
             // 
@@ -194,7 +195,7 @@
             cbbchucVu.AutoCompleteSource = AutoCompleteSource.ListItems;
             cbbchucVu.DropDownStyle = ComboBoxStyle.DropDownList;
             cbbchucVu.FormattingEnabled = true;
-            cbbchucVu.Items.AddRange(new object[] { "Y tá", "Bác sỹ", "Dược sỹ" });
+            cbbchucVu.Items.AddRange(new object[] { "Y tá", "Bác sỹ", "Dược sỹ", "Admin" });
             cbbchucVu.Location = new Point(739, 51);
             cbbchucVu.Name = "cbbchucVu";
             cbbchucVu.Size = new Size(352, 36);

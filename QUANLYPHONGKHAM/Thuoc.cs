@@ -132,28 +132,20 @@ namespace QUANLYPHONGKHAM
             }
             if (txtMaThuoc.Text == "")
             {
-                string tenThuoc = txtTenThuoc.Text;
-                string cachDung = cbbCachDung.Text;
-                string hamLuongND = txthamLuongNDo.Text;
-                string donViTinh = cbbdonViTinh.Text;
-                string dangBaoChe = cbbdangBaoChe.Text;
-                string hinhAnh = txtHinhAnhThuoc.Text;
-                string thanhPhan = txtThanhPhan.Text;
-                string ghiChu = txtGhiChu.Text;
-                string tenLopThuoc = cbbTenLopThuoc.SelectedValue.ToString();
+               
                 DTO.Thuoc thuoc = new DTO.Thuoc()
                 {
                     
                     Mathuoc = 0,
-                    MaLopthuoc = Int32.Parse(tenLopThuoc) - 1,
-                    TenThuoc = tenThuoc,
-                    cachDung = cachDung,
-                    hamLuongNDo = hamLuongND,
-                    donViTinh = donViTinh,
-                    dangBaoChe = dangBaoChe,
-                    HinhAnh = hinhAnh,
-                    thanhPhan = thanhPhan,
-                    ghiChu = ghiChu,
+                    MaLopthuoc = Int32.Parse(cbbTenLopThuoc.SelectedValue.ToString())-1,
+                    TenThuoc = txtTenThuoc.Text,
+                    cachDung = cbbCachDung.Text,
+                    hamLuongNDo = txthamLuongNDo.Text,
+                    donViTinh = cbbdonViTinh.Text,
+                    dangBaoChe = cbbdangBaoChe.Text,
+                    HinhAnh = txtHinhAnhThuoc.Text,
+                    thanhPhan = txtThanhPhan.Text,
+                    ghiChu = txtGhiChu.Text,
 
                 };
                 bool result2 = new ThuocBUS().AddNewThuoc(thuoc);
@@ -175,48 +167,36 @@ namespace QUANLYPHONGKHAM
         // Hello
         private void btnXoa_Click(object sender, EventArgs e)
         {
+
+
             int i = dgvDSThuoc.CurrentRow.Index;
-
-            if (dgvDSThuoc.SelectedRows.Count > 0)
+            string message = "Are you sure Delete this item?";
+            string title = "Delete Producer!";
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result = MessageBox.Show(message, title, buttons);
+            if (result == DialogResult.Yes)
             {
-                string message = "Bạn có chắc muốn xóa thuốc hay không?";
-                string title = "Xóa Thuoc!";
-                MessageBoxButtons buttons = MessageBoxButtons.YesNo;
-                DialogResult result = MessageBox.Show(message, title, buttons);
-                if (result == DialogResult.Yes)
+                string nameImgSP = dgvDSThuoc.Rows[i].Cells[9].Value.ToString();
+
+                bool result2 = new NhanVienBUS().DeleteUser(Int32.Parse(dgvDSThuoc.Rows[i].Cells[0].Value.ToString()));
+                if (result2)
                 {
-                    string nameImgSP = dgvDSThuoc.Rows[i].Cells[9].Value.ToString();
-
-
-                    bool result2 = new ThuocBUS().DeleteThuoc(Int32.Parse(dgvDSThuoc.Rows[i].Cells[0].Value.ToString()));
-                    if (result2)
-                    {
-                        XoaHinhAnhThuoc(nameImgSP);
-                        Thuoc_Load(sender, e);
-                    }
+                    XoaHinhAnhThuoc(nameImgSP);
+                    Loaddata();
                 }
-            }
-            else
-            {
-                MessageBox.Show("Chọn 1 dòng để XÓA");
             }
         }
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
-            string TenThuoc = txtTenThuoc.Text;
-            string CachDung = cbbCachDung.Text;
-            string HamLuongNDo = txthamLuongNDo.Text;
-            string DonViTinh = cbbdonViTinh.Text;
-            string DangBaoChe = cbbdangBaoChe.Text;
-            string HinhAnh;
+           
             if (dgvDSThuoc.SelectedRows.Count > 0)
             {
                 DTO.Thuoc thuoc = new DTO.Thuoc()
                 {
 
                     Mathuoc = Int32.Parse(txtMaThuoc.Text.ToString()),
-                    MaLopthuoc = Int32.Parse(cbbTenLopThuoc.SelectedValue.ToString()) - 1,
+                    MaLopthuoc = Int32.Parse(cbbTenLopThuoc.SelectedValue.ToString())-1 ,
                     TenThuoc = txtTenThuoc.Text,
                     cachDung = cbbCachDung.Text,
                     hamLuongNDo = txthamLuongNDo.Text,
@@ -247,45 +227,98 @@ namespace QUANLYPHONGKHAM
             }
         }
 
+        /*  private void dgvDSThuoc_CellClick(object sender, DataGridViewCellEventArgs e)
+          {
+              dgvDSThuoc.CurrentRow.Selected = true;
+
+              txtMaThuoc.Text = dgvDSThuoc.Rows[e.RowIndex].Cells["MaThuoc"].Value.ToString();
+              cbbTenLopThuoc.SelectedIndex = Int32.Parse(dgvDSThuoc.Rows[e.RowIndex].Cells["MaLopThuoc"].Value.ToString());
+              txtTenThuoc.Text = dgvDSThuoc.Rows[e.RowIndex].Cells["tenThuoc"].Value.ToString();
+              txthamLuongNDo.Text = dgvDSThuoc.Rows[e.RowIndex].Cells["hamLuongNDo"].Value.ToString();
+
+              cbbdonViTinh.Text = dgvDSThuoc.Rows[e.RowIndex].Cells["donViTinh"].Value.ToString();
+              cbbdangBaoChe.Text = dgvDSThuoc.Rows[e.RowIndex].Cells["dangBaoChe"].Value.ToString();
+              cbbCachDung.Text = dgvDSThuoc.Rows[e.RowIndex].Cells["cachDung"].Value.ToString();
+              txtHinhAnhThuoc.Text = dgvDSThuoc.Rows[e.RowIndex].Cells["hinhAnh"].Value.ToString();
+              txtGhiChu.Text = dgvDSThuoc.Rows[e.RowIndex].Cells["ghiChu"].Value.ToString();
+              txtThanhPhan.Text = dgvDSThuoc.Rows[e.RowIndex].Cells["thanhPhan"].Value.ToString();
+              string appPath = Path.GetDirectoryName(Application.LocalUserAppDataPath) + @"\ProImages\";
+              string tenAnh = txtHinhAnhThuoc.Text;
+              string pathImage = Path.Combine(appPath, tenAnh);
+              if (!Directory.Exists(appPath))
+              {
+                  Directory.CreateDirectory(appPath);
+              }
+              if (File.Exists(pathImage))
+              {
+                  try
+                  {
+                      pbHinhAnhThuoc.Image = new Bitmap(pathImage);
+                  }
+                  catch (Exception ex)
+                  {
+                      MessageBox.Show(ex.Message);
+                  }
+              }
+              else
+              {
+                  MessageBox.Show("Đường dẫn ảnh: " + pathImage + " này không tìm thấy");
+              }
+              pbHinhAnhThuoc.Image = Image.FromFile(pathImage);
+
+          }*/
+
         private void dgvDSThuoc_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            dgvDSThuoc.CurrentRow.Selected = true;
+            try
+            {
+                dgvDSThuoc.CurrentRow.Selected = true;
 
-            txtMaThuoc.Text = dgvDSThuoc.Rows[e.RowIndex].Cells["MaThuoc"].Value.ToString();
-            cbbTenLopThuoc.SelectedIndex = Int32.Parse(dgvDSThuoc.Rows[e.RowIndex].Cells["MaLopThuoc"].Value.ToString());
-            txtTenThuoc.Text = dgvDSThuoc.Rows[e.RowIndex].Cells["tenThuoc"].Value.ToString();
-            txthamLuongNDo.Text = dgvDSThuoc.Rows[e.RowIndex].Cells["hamLuongNDo"].Value.ToString();
+                txtMaThuoc.Text = dgvDSThuoc.Rows[e.RowIndex].Cells["MaThuoc"].Value.ToString();
+                cbbTenLopThuoc.SelectedIndex = Int32.Parse(dgvDSThuoc.Rows[e.RowIndex].Cells["MaLopThuoc"].Value.ToString());
+                txtTenThuoc.Text = dgvDSThuoc.Rows[e.RowIndex].Cells["tenThuoc"].Value.ToString();
+                txthamLuongNDo.Text = dgvDSThuoc.Rows[e.RowIndex].Cells["hamLuongNDo"].Value.ToString();
 
-            cbbdonViTinh.Text = dgvDSThuoc.Rows[e.RowIndex].Cells["donViTinh"].Value.ToString();
-            cbbdangBaoChe.Text = dgvDSThuoc.Rows[e.RowIndex].Cells["dangBaoChe"].Value.ToString();
-            cbbCachDung.Text = dgvDSThuoc.Rows[e.RowIndex].Cells["cachDung"].Value.ToString();
-            txtHinhAnhThuoc.Text = dgvDSThuoc.Rows[e.RowIndex].Cells["hinhAnh"].Value.ToString();
-            txtGhiChu.Text = dgvDSThuoc.Rows[e.RowIndex].Cells["ghiChu"].Value.ToString();
-            txtThanhPhan.Text = dgvDSThuoc.Rows[e.RowIndex].Cells["thanhPhan"].Value.ToString();
-            string appPath = Path.GetDirectoryName(Application.LocalUserAppDataPath) + @"\ProImages\";
-            string tenAnh = txtHinhAnhThuoc.Text;
-            string pathImage = Path.Combine(appPath, tenAnh);
-            if (!Directory.Exists(appPath))
-            {
-                Directory.CreateDirectory(appPath);
-            }
-            if (File.Exists(pathImage))
-            {
-                try
+                cbbdonViTinh.Text = dgvDSThuoc.Rows[e.RowIndex].Cells["donViTinh"].Value.ToString();
+                cbbdangBaoChe.Text = dgvDSThuoc.Rows[e.RowIndex].Cells["dangBaoChe"].Value.ToString();
+                cbbCachDung.Text = dgvDSThuoc.Rows[e.RowIndex].Cells["cachDung"].Value.ToString();
+                txtHinhAnhThuoc.Text = dgvDSThuoc.Rows[e.RowIndex].Cells["hinhAnh"].Value.ToString();
+                txtGhiChu.Text = dgvDSThuoc.Rows[e.RowIndex].Cells["ghiChu"].Value.ToString();
+                txtThanhPhan.Text = dgvDSThuoc.Rows[e.RowIndex].Cells["thanhPhan"].Value.ToString();
+
+                string appPath = Path.GetDirectoryName(Application.LocalUserAppDataPath) + @"\HinhAnhThuoc\";
+                string tenAnh = txtHinhAnhThuoc.Text;
+                string pathImage = Path.Combine(appPath, tenAnh);
+
+                if (!Directory.Exists(appPath))
                 {
-                    pbHinhAnhThuoc.Image = new Bitmap(pathImage);
+                    Directory.CreateDirectory(appPath);
                 }
-                catch (Exception ex)
+
+                if (File.Exists(pathImage))
                 {
-                    MessageBox.Show(ex.Message);
+                    try
+                    {
+                        pbHinhAnhThuoc.Image = new Bitmap(pathImage);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lỗi khi tải ảnh: " + ex.Message);
+                        pbHinhAnhThuoc.Image = null; // Đặt ảnh về null nếu có lỗi
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Đường dẫn ảnh: " + pathImage + " này không tìm thấy");
+                    pbHinhAnhThuoc.Image = null; // Đặt ảnh về null nếu không tìm thấy
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Đường dẫn ảnh: " + pathImage + " này không tìm thấy");
+                MessageBox.Show("Lỗi: " + ex.Message);
             }
-            pbHinhAnhThuoc.Image = Image.FromFile(pathImage);
         }
+
 
         public void LoadDataBySearchName(string keyword, int id)
         {
@@ -331,7 +364,7 @@ namespace QUANLYPHONGKHAM
             int StaTenLoaiThuoc = 0;
             if (ckbTimTheoLoaithuoc.Checked == true )
             {
-                StaTenLoaiThuoc = Int32.Parse(cbbLoaiThuoc.SelectedValue.ToString());
+                StaTenLoaiThuoc = Int32.Parse(cbbLoaiThuoc.SelectedValue.ToString())-1;
 
                 if (txtTimKiem.Text == "")
                 {
@@ -355,7 +388,7 @@ namespace QUANLYPHONGKHAM
             OpenFileDialog opFile = new OpenFileDialog();
             opFile.Title = "Select a Image";
             opFile.Filter = "jpg files (*.jpg)|*.jpg|png files (*.png)|*.png|All files (*.*)|*.*";
-            string appPath = Path.GetDirectoryName(Application.LocalUserAppDataPath) + @"\ProImages\";  // <---
+            string appPath = Path.GetDirectoryName(Application.LocalUserAppDataPath) + @"\HinhAnhThuoc\";  // <---
             if (Directory.Exists(appPath) == false)                                              // <---
             {                                                                                    // <---
                 Directory.CreateDirectory(appPath);                                              // <---
@@ -384,7 +417,7 @@ namespace QUANLYPHONGKHAM
 
         public void XoaAnhCu(string tenAnh)
         {
-            string appPath = Path.GetDirectoryName(Application.LocalUserAppDataPath) + @"\ProImages\";
+            string appPath = Path.GetDirectoryName(Application.LocalUserAppDataPath) + @"\HinhAnhThuoc\";
             string duongDanHinhAnh = Path.Combine(appPath, tenAnh);
             if (File.Exists(duongDanHinhAnh))
             {
@@ -402,7 +435,7 @@ namespace QUANLYPHONGKHAM
 
         private void XoaHinhAnhThuoc(string tenAnh)
         {
-            string appPath = Path.GetDirectoryName(Application.LocalUserAppDataPath) + @"\ProImages\";
+            string appPath = Path.GetDirectoryName(Application.LocalUserAppDataPath) + @"\HinhAnhThuoc\";
             string duongDanHinhAnh = Path.Combine(appPath, tenAnh);
             if (File.Exists(duongDanHinhAnh))
             {

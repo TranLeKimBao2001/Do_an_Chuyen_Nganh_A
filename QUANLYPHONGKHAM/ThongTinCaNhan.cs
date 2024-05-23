@@ -35,7 +35,7 @@ namespace QUANLYPHONGKHAM
             txtcccd.Text = nv.CCCD.ToString();
             cbbchucVu.Text = nv.Chucvu.ToString();
             dtpngayLam.Text = nv.Ngayvaolam.ToString();
-            string appPath = Path.GetDirectoryName(Application.LocalUserAppDataPath) + @"\ProImages\";
+            string appPath = Path.GetDirectoryName(Application.LocalUserAppDataPath) + @"\HinhAnhNVien\";
             string tenAnh = nv.HinhAnh;
             string pathImage = Path.Combine(appPath, tenAnh);
             if (!Directory.Exists(appPath))

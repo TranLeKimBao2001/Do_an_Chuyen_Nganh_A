@@ -61,7 +61,7 @@ namespace QUANLYPHONGKHAM
             OpenFileDialog opFile = new OpenFileDialog();
             opFile.Title = "Select a Image";
             opFile.Filter = "jpg files (*.jpg)|*.jpg|png files (*.png)|*.png|All files (*.*)|*.*";
-            string appPath = Path.GetDirectoryName(Application.LocalUserAppDataPath) + @"\ProImages\";  // <---
+            string appPath = Path.GetDirectoryName(Application.LocalUserAppDataPath) + @"\HinhAnhNVien\";  // <---
             if (Directory.Exists(appPath) == false)                                              // <---
             {                                                                                    // <---
                 Directory.CreateDirectory(appPath);                                              // <---
@@ -89,7 +89,7 @@ namespace QUANLYPHONGKHAM
         }
         public void XoaAnhCu(string tenAnh)
         {
-            string appPath = Path.GetDirectoryName(Application.LocalUserAppDataPath) + @"\ProImages\";
+            string appPath = Path.GetDirectoryName(Application.LocalUserAppDataPath) + @"\HinhAnhNVien\";
             string duongDanHinhAnh = Path.Combine(appPath, tenAnh);
             if (File.Exists(duongDanHinhAnh))
             {
@@ -172,7 +172,7 @@ namespace QUANLYPHONGKHAM
            cbbchucVu.Text= dgvDSNhanVien.Rows[e.RowIndex].Cells["chucVu"].Value.ToString();
             txthinhanh.Text = dgvDSNhanVien.Rows[e.RowIndex].Cells["hinhAnh"].Value.ToString();
             dtpNgayvaolam.Text = dgvDSNhanVien.Rows[e.RowIndex].Cells["ngayVaoLam"].Value.ToString();
-            string appPath = Path.GetDirectoryName(Application.LocalUserAppDataPath) + @"\ProImages\";
+            string appPath = Path.GetDirectoryName(Application.LocalUserAppDataPath) + @"\HinhAnhNVien\";
             string tenAnh = txthinhanh.Text;
             string pathImage = Path.Combine(appPath, tenAnh);
             if (!Directory.Exists(appPath))
@@ -271,7 +271,7 @@ namespace QUANLYPHONGKHAM
         }
         private void XoaHinhAnhNhanVien(string tenAnh)
         {
-            string appPath = Path.GetDirectoryName(Application.LocalUserAppDataPath) + @"\ProImages\";
+            string appPath = Path.GetDirectoryName(Application.LocalUserAppDataPath) + @"\HinhAnhNVien\";
             string duongDanHinhAnh = Path.Combine(appPath, tenAnh);
             if (File.Exists(duongDanHinhAnh))
             {
