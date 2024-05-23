@@ -165,6 +165,7 @@ namespace QUANLYPHONGKHAM
             }
         }
         // Hello
+        //HELLLLLO
         private void btnXoa_Click(object sender, EventArgs e)
         {
 
