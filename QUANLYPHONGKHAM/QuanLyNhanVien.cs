@@ -8,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -198,10 +199,10 @@ namespace QUANLYPHONGKHAM
             pbhinhAnhNV.Image = Image.FromFile(pathImage);
 
         }
-
+       
         private void btnThem_Click_1(object sender, EventArgs e)
         {
-
+            errorPCCCD.Clear();
             DateTime selectedDate = dtpngaySinh.Value;
             DateTime ngayVaoLam = dtpNgayvaolam.Value;
             if (txthoten.Text.Length == 0)
@@ -224,13 +225,16 @@ namespace QUANLYPHONGKHAM
                 MessageBox.Show("Nhap nat khau!");
                 return;
             }
-            if (txtCCCD.Text.Length == 0)
+            
+           
+            string errorMessage;
+            if (!IsValidCCCD(txtCCCD.Text, out errorMessage))
             {
-                MessageBox.Show("Nhap CCCD!");
+                errorPCCCD.SetError(txtCCCD, errorMessage);
                 return;
-
             }
-             if (pbhinhAnhNV.Image == null)
+
+            if (pbhinhAnhNV.Image == null)
              {
                  MessageBox.Show("Chon hinh anh !");
                  return;
@@ -270,6 +274,39 @@ namespace QUANLYPHONGKHAM
                 }
             }
         }
+        private static bool IsValidCCCD(string cccd, out string errorMessage)
+        {
+            
+            errorMessage = "";
+
+            
+            
+            if (cccd.Length != 12)
+            {
+                errorMessage = "CCCD phải có đúng 12 ký tự.";
+                return false;
+            }
+            if (cccd.Contains(" "))
+            {
+                errorMessage = "CCCD không được chứa khoảng trắng.";
+                return false;
+            }
+            if (!Regex.IsMatch(cccd, @"^\d{12}$"))
+            {
+                errorMessage = "CCCD chỉ được chưa các chữ số 0-9 và không có ký tự đặc biệt.";
+                return false;
+            }
+
+            string[] validStartCodes = { "001", "002", "004",  "006", "008", "010", "011", "012", "014", "015", "017", "019", "020", "022", "024", "025", "026", "027", "030", "031", "033", "034", "035", "036", "037", "038", "040", "042", "044", "045", "046", "048", "049", "051", "052", "054", "056", "058", "060", "062", "064", "066", "067", "068", "070", "072", "074", "075", "077", "079", "080", "082", "083", "084", "086", "087", "089", "091", "092", "093", "094", "095", "096", };
+            if (!validStartCodes.Contains(cccd.Substring(0, 3)))
+            {
+                errorMessage = "CCCD không hợp lệ.";
+                return false;
+            }
+
+            return true;
+        }
+
         private void XoaHinhAnhNhanVien(string tenAnh)
         {
             string appPath = Path.GetDirectoryName(Application.LocalUserAppDataPath) + @"\HinhAnhNVien\";
@@ -316,6 +353,7 @@ namespace QUANLYPHONGKHAM
 
         private void btnSua_Click(object sender, EventArgs e)
         {
+            string errorMessage;
             DateTime selectedDate = dtpngaySinh.Value;
             DateTime ngayVaoLam = dtpNgayvaolam.Value;
 
@@ -335,6 +373,11 @@ namespace QUANLYPHONGKHAM
                      HinhAnh = txthinhanh.Text,
                     Ngayvaolam = DateTime.Parse(ngayVaoLam.ToString()),
                 };
+                if (!IsValidCCCD(txtCCCD.Text, out errorMessage))
+                {
+                    errorPCCCD.SetError(txtCCCD, errorMessage);
+                    return;
+                }
                 bool result2 = new NhanVienBUS().UpdateUser(nv);
                 if (result2)
                 {

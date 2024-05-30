@@ -14,7 +14,7 @@ namespace QUANLYPHONGKHAM
         SqlDataAdapter adapter;
         public DatabaseSQLExecute()
         {
-            string constr = @"Data Source=DESKTOP-B9L5P09\TRANLEKIMBAO;Initial Catalog=QUANLYPHONGKHAM;Integrated Security=True;TrustServerCertificate=True";
+            string constr = @"Data Source=.;Initial Catalog=QUANLYPHONGKHAM;Integrated Security=True;TrustServerCertificate=True";
             conn = new SqlConnection(constr);
             adapter = new SqlDataAdapter();
         }
