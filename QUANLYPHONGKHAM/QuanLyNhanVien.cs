@@ -112,6 +112,7 @@ namespace QUANLYPHONGKHAM
             txttaiKhoan.Text = "";
             txtmatKhau.Text = "";
             txtCCCD.Text = "";
+            txthinhanh.Text = "";
             pbhinhAnhNV.Image = null;
             cbbchucVu.SelectedIndex = 0;
             cbbgioiTinh.SelectedIndex = 0;

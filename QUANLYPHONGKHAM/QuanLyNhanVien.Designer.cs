@@ -70,11 +70,11 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 22.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Tahoma", 22.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.FromArgb(0, 0, 192);
             label1.Location = new Point(508, 20);
             label1.Name = "label1";
-            label1.Size = new Size(399, 50);
+            label1.Size = new Size(414, 45);
             label1.TabIndex = 0;
             label1.Text = "QUẢN LÝ NHÂN VIÊN";
             // 
@@ -108,9 +108,9 @@
             groupBox2.Controls.Add(label3);
             groupBox2.Controls.Add(txtMaNV);
             groupBox2.Controls.Add(label2);
-            groupBox2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            groupBox2.Font = new Font("Tahoma", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             groupBox2.ForeColor = Color.Blue;
-            groupBox2.Location = new Point(24, 92);
+            groupBox2.Location = new Point(23, 92);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(1670, 388);
             groupBox2.TabIndex = 9;
@@ -132,7 +132,7 @@
             // 
             txthinhanh.Location = new Point(739, 262);
             txthinhanh.Name = "txthinhanh";
-            txthinhanh.Size = new Size(352, 34);
+            txthinhanh.Size = new Size(352, 32);
             txthinhanh.TabIndex = 11;
             // 
             // label12
@@ -149,7 +149,7 @@
             // 
             txtmatKhau.Location = new Point(739, 206);
             txtmatKhau.Name = "txtmatKhau";
-            txtmatKhau.Size = new Size(352, 34);
+            txtmatKhau.Size = new Size(352, 32);
             txtmatKhau.TabIndex = 10;
             txtmatKhau.UseSystemPasswordChar = true;
             // 
@@ -167,7 +167,7 @@
             // 
             txttaiKhoan.Location = new Point(739, 149);
             txttaiKhoan.Name = "txttaiKhoan";
-            txttaiKhoan.Size = new Size(352, 34);
+            txttaiKhoan.Size = new Size(352, 32);
             txttaiKhoan.TabIndex = 9;
             // 
             // dtpNgayvaolam
@@ -176,7 +176,7 @@
             dtpNgayvaolam.Format = DateTimePickerFormat.Custom;
             dtpNgayvaolam.Location = new Point(176, 153);
             dtpNgayvaolam.Name = "dtpNgayvaolam";
-            dtpNgayvaolam.Size = new Size(352, 34);
+            dtpNgayvaolam.Size = new Size(352, 32);
             dtpNgayvaolam.TabIndex = 3;
             // 
             // label10
@@ -198,7 +198,7 @@
             cbbchucVu.Items.AddRange(new object[] { "Y tá", "Bác sỹ", "Dược sỹ", "Admin" });
             cbbchucVu.Location = new Point(739, 51);
             cbbchucVu.Name = "cbbchucVu";
-            cbbchucVu.Size = new Size(352, 36);
+            cbbchucVu.Size = new Size(352, 32);
             cbbchucVu.TabIndex = 7;
             // 
             // label9
@@ -220,7 +220,7 @@
             cbbgioiTinh.Items.AddRange(new object[] { "Nam", "Nữ" });
             cbbgioiTinh.Location = new Point(176, 256);
             cbbgioiTinh.Name = "cbbgioiTinh";
-            cbbgioiTinh.Size = new Size(83, 36);
+            cbbgioiTinh.Size = new Size(83, 32);
             cbbgioiTinh.TabIndex = 5;
             // 
             // dtpngaySinh
@@ -229,7 +229,7 @@
             dtpngaySinh.Format = DateTimePickerFormat.Custom;
             dtpngaySinh.Location = new Point(739, 102);
             dtpngaySinh.Name = "dtpngaySinh";
-            dtpngaySinh.Size = new Size(352, 34);
+            dtpngaySinh.Size = new Size(352, 32);
             dtpngaySinh.TabIndex = 8;
             dtpngaySinh.ValueChanged += dtpngaySinh_ValueChanged;
             // 
@@ -308,7 +308,7 @@
             // 
             txtdiaChi.Location = new Point(176, 311);
             txtdiaChi.Name = "txtdiaChi";
-            txtdiaChi.Size = new Size(352, 34);
+            txtdiaChi.Size = new Size(352, 32);
             txtdiaChi.TabIndex = 6;
             // 
             // label6
@@ -325,7 +325,7 @@
             // 
             txtCCCD.Location = new Point(176, 203);
             txtCCCD.Name = "txtCCCD";
-            txtCCCD.Size = new Size(352, 34);
+            txtCCCD.Size = new Size(352, 32);
             txtCCCD.TabIndex = 4;
             // 
             // label5
@@ -352,7 +352,7 @@
             // 
             txthoten.Location = new Point(176, 105);
             txthoten.Name = "txthoten";
-            txthoten.Size = new Size(352, 34);
+            txthoten.Size = new Size(352, 32);
             txthoten.TabIndex = 2;
             // 
             // label3
@@ -371,7 +371,7 @@
             txtMaNV.Location = new Point(176, 47);
             txtMaNV.Name = "txtMaNV";
             txtMaNV.ReadOnly = true;
-            txtMaNV.Size = new Size(83, 34);
+            txtMaNV.Size = new Size(83, 32);
             txtMaNV.TabIndex = 1;
             // 
             // label2
@@ -387,7 +387,7 @@
             // groupBox1
             // 
             groupBox1.Controls.Add(dgvDSNhanVien);
-            groupBox1.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            groupBox1.Font = new Font("Tahoma", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             groupBox1.ForeColor = Color.FromArgb(0, 0, 192);
             groupBox1.Location = new Point(3, 504);
             groupBox1.Name = "groupBox1";

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LopThuoc));
             groupBox1 = new GroupBox();
             btnLamMoi = new Button();
             button6 = new Button();
@@ -41,6 +42,7 @@
             label1 = new Label();
             groupBox2 = new GroupBox();
             dgvDSLopTHuoc = new DataGridView();
+            label4 = new Label();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvDSLopTHuoc).BeginInit();
@@ -59,12 +61,12 @@
             groupBox1.Controls.Add(txtMaLopThuoc);
             groupBox1.Controls.Add(label1);
             groupBox1.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            groupBox1.Location = new Point(12, 12);
+            groupBox1.Location = new Point(12, 124);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(1102, 349);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
-            groupBox1.Text = "THÔNG TIN LỚP THUỐC";
+            groupBox1.Text = "THÔNG TIN LOẠI THUỐC";
             // 
             // btnLamMoi
             // 
@@ -161,7 +163,7 @@
             // 
             groupBox2.Controls.Add(dgvDSLopTHuoc);
             groupBox2.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            groupBox2.Location = new Point(12, 396);
+            groupBox2.Location = new Point(12, 514);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(1102, 307);
             groupBox2.TabIndex = 1;
@@ -178,13 +180,25 @@
             dgvDSLopTHuoc.TabIndex = 8;
             dgvDSLopTHuoc.CellClick += dgvDSLopTHuoc_CellClick;
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Tahoma", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.Location = new Point(496, 42);
+            label4.Name = "label4";
+            label4.Size = new Size(206, 36);
+            label4.TabIndex = 8;
+            label4.Text = "LOẠI THUỐC";
+            // 
             // LopThuoc
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1315, 715);
+            ClientSize = new Size(1315, 849);
+            Controls.Add(label4);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "LopThuoc";
             Text = "Danh mục";
             Load += LopThuoc_Load;
@@ -193,6 +207,7 @@
             groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvDSLopTHuoc).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -215,5 +230,6 @@
         private Button button6;
         private Button btnXoa;
         private Button btnThem;
+        private Label label4;
     }
 }

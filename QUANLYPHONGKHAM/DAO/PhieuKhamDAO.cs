@@ -52,7 +52,7 @@ namespace QUANLYPHONGKHAM.DAO
         {
             try
             {
-                string query = "INSERT INTO PhieuKham (ngayLap, canNang, lyDoKham, MaNV, MaBN,ghiChu) values ('" + phieuKham.Ngaylap + "', '" + phieuKham.Cannang + "', N'" + phieuKham.LydoKham  + "', '" + phieuKham.MaNV + "', '" + phieuKham.MaBN+ "', N'"+phieuKham.ghiChu + "')";
+                string query = "INSERT INTO PhieuKham (ngayLap, canNang, lyDoKham, MaNV, MaBN) values ('" + phieuKham.Ngaylap + "', '" + phieuKham.Cannang + "', N'" + phieuKham.LydoKham  + "', '" + phieuKham.MaNV + "', '" + phieuKham.MaBN/*+ "', N'"+phieuKham.ghiChu +*/+ "')";
                 return databaseSQLExecute.ExecuteCRUDQuery(query);
             }
             catch
