@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuanLyNhanVien));
             label1 = new Label();
             groupBox2 = new GroupBox();
@@ -61,10 +62,12 @@
             label2 = new Label();
             groupBox1 = new GroupBox();
             dgvDSNhanVien = new DataGridView();
+            errorPCCCD = new ErrorProvider(components);
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbhinhAnhNV).BeginInit();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvDSNhanVien).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorPCCCD).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -409,6 +412,10 @@
             dgvDSNhanVien.CellClick += dgvDSNhanVien_CellClick;
             dgvDSNhanVien.CellContentClick += dgvDSNhanVien_CellContentClick;
             // 
+            // errorPCCCD
+            // 
+            errorPCCCD.ContainerControl = this;
+            // 
             // QuanLyNhanVien
             // 
             AutoScaleDimensions = new SizeF(9F, 18F);
@@ -428,6 +435,7 @@
             ((System.ComponentModel.ISupportInitialize)pbhinhAnhNV).EndInit();
             groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvDSNhanVien).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorPCCCD).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -466,5 +474,6 @@
         private TextBox txttaiKhoan;
         private Label label8;
         private TextBox txthinhanh;
+        private ErrorProvider errorPCCCD;
     }
 }

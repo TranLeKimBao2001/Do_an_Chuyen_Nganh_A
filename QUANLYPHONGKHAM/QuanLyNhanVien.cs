@@ -8,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -197,10 +198,10 @@ namespace QUANLYPHONGKHAM
             pbhinhAnhNV.Image = Image.FromFile(pathImage);
 
         }
-
+       
         private void btnThem_Click_1(object sender, EventArgs e)
         {
-
+            errorPCCCD.Clear();
             DateTime selectedDate = dtpngaySinh.Value;
             DateTime ngayVaoLam = dtpNgayvaolam.Value;
             if (txthoten.Text.Length == 0)
@@ -223,13 +224,18 @@ namespace QUANLYPHONGKHAM
                 MessageBox.Show("Nhap nat khau!");
                 return;
             }
+            
             if (txtCCCD.Text.Length == 0)
             {
-                MessageBox.Show("Nhap CCCD!");
+                errorPCCCD.SetError(txtCCCD, "CCCD không được để trống!");
                 return;
-
             }
-             if (pbhinhAnhNV.Image == null)
+            else if (!IsValidCCCD(txtCCCD.Text)) 
+            {
+                errorPCCCD.SetError(txtCCCD, "Chỉ được nhập số");
+                return;
+            }
+            if (pbhinhAnhNV.Image == null)
              {
                  MessageBox.Show("Chon hinh anh !");
                  return;
@@ -268,6 +274,12 @@ namespace QUANLYPHONGKHAM
                     }
                 }
             }
+        }
+        private bool IsValidCCCD(string cccd)
+        {
+            
+            Regex regex = new Regex(@"^\d+$");
+            return regex.IsMatch(cccd);
         }
         private void XoaHinhAnhNhanVien(string tenAnh)
         {
@@ -334,6 +346,11 @@ namespace QUANLYPHONGKHAM
                      HinhAnh = txthinhanh.Text,
                     Ngayvaolam = DateTime.Parse(ngayVaoLam.ToString()),
                 };
+                if (!IsValidCCCD(txtCCCD.Text))
+                {
+                    errorPCCCD.SetError(txtCCCD, "Chỉ được nhập số");
+                    return;
+                }
                 bool result2 = new NhanVienBUS().UpdateUser(nv);
                 if (result2)
                 {
