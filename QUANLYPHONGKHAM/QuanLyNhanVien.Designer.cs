@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuanLyNhanVien));
             label1 = new Label();
             groupBox2 = new GroupBox();
@@ -61,10 +62,12 @@
             label2 = new Label();
             groupBox1 = new GroupBox();
             dgvDSNhanVien = new DataGridView();
+            errorProvider1 = new ErrorProvider(components);
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbhinhAnhNV).BeginInit();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvDSNhanVien).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -74,7 +77,7 @@
             label1.ForeColor = Color.FromArgb(0, 0, 192);
             label1.Location = new Point(508, 20);
             label1.Name = "label1";
-            label1.Size = new Size(414, 45);
+            label1.Size = new Size(502, 54);
             label1.TabIndex = 0;
             label1.Text = "QUẢN LÝ NHÂN VIÊN";
             // 
@@ -124,7 +127,7 @@
             label8.Font = new Font("Tahoma", 12F, FontStyle.Bold);
             label8.Location = new Point(551, 262);
             label8.Name = "label8";
-            label8.Size = new Size(105, 24);
+            label8.Size = new Size(125, 29);
             label8.TabIndex = 33;
             label8.Text = "Ten hinh:";
             // 
@@ -132,7 +135,7 @@
             // 
             txthinhanh.Location = new Point(739, 262);
             txthinhanh.Name = "txthinhanh";
-            txthinhanh.Size = new Size(352, 32);
+            txthinhanh.Size = new Size(352, 36);
             txthinhanh.TabIndex = 11;
             // 
             // label12
@@ -141,7 +144,7 @@
             label12.Font = new Font("Tahoma", 12F, FontStyle.Bold);
             label12.Location = new Point(551, 209);
             label12.Name = "label12";
-            label12.Size = new Size(111, 24);
+            label12.Size = new Size(132, 29);
             label12.TabIndex = 31;
             label12.Text = "Mật khẩu:";
             // 
@@ -149,9 +152,10 @@
             // 
             txtmatKhau.Location = new Point(739, 206);
             txtmatKhau.Name = "txtmatKhau";
-            txtmatKhau.Size = new Size(352, 32);
+            txtmatKhau.Size = new Size(352, 36);
             txtmatKhau.TabIndex = 10;
             txtmatKhau.UseSystemPasswordChar = true;
+            txtmatKhau.TextChanged += txtmatKhau_TextChanged;
             // 
             // label11
             // 
@@ -159,7 +163,7 @@
             label11.Font = new Font("Tahoma", 12F, FontStyle.Bold);
             label11.Location = new Point(551, 158);
             label11.Name = "label11";
-            label11.Size = new Size(115, 24);
+            label11.Size = new Size(138, 29);
             label11.TabIndex = 29;
             label11.Text = "Tài khoản:";
             // 
@@ -167,8 +171,9 @@
             // 
             txttaiKhoan.Location = new Point(739, 149);
             txttaiKhoan.Name = "txttaiKhoan";
-            txttaiKhoan.Size = new Size(352, 32);
+            txttaiKhoan.Size = new Size(352, 36);
             txttaiKhoan.TabIndex = 9;
+            txttaiKhoan.TextChanged += txttaiKhoan_TextChanged;
             // 
             // dtpNgayvaolam
             // 
@@ -176,7 +181,7 @@
             dtpNgayvaolam.Format = DateTimePickerFormat.Custom;
             dtpNgayvaolam.Location = new Point(176, 153);
             dtpNgayvaolam.Name = "dtpNgayvaolam";
-            dtpNgayvaolam.Size = new Size(352, 32);
+            dtpNgayvaolam.Size = new Size(352, 36);
             dtpNgayvaolam.TabIndex = 3;
             // 
             // label10
@@ -185,7 +190,7 @@
             label10.Font = new Font("Tahoma", 12F, FontStyle.Bold);
             label10.Location = new Point(551, 111);
             label10.Name = "label10";
-            label10.Size = new Size(154, 24);
+            label10.Size = new Size(185, 29);
             label10.TabIndex = 25;
             label10.Text = "Ngày vào làm:";
             // 
@@ -198,7 +203,7 @@
             cbbchucVu.Items.AddRange(new object[] { "Y tá", "Bác sỹ", "Dược sỹ", "Admin" });
             cbbchucVu.Location = new Point(739, 51);
             cbbchucVu.Name = "cbbchucVu";
-            cbbchucVu.Size = new Size(352, 32);
+            cbbchucVu.Size = new Size(352, 37);
             cbbchucVu.TabIndex = 7;
             // 
             // label9
@@ -207,7 +212,7 @@
             label9.Font = new Font("Tahoma", 12F, FontStyle.Bold);
             label9.Location = new Point(551, 57);
             label9.Name = "label9";
-            label9.Size = new Size(99, 24);
+            label9.Size = new Size(119, 29);
             label9.TabIndex = 23;
             label9.Text = "Chức vụ:";
             // 
@@ -220,7 +225,7 @@
             cbbgioiTinh.Items.AddRange(new object[] { "Nam", "Nữ" });
             cbbgioiTinh.Location = new Point(176, 256);
             cbbgioiTinh.Name = "cbbgioiTinh";
-            cbbgioiTinh.Size = new Size(83, 32);
+            cbbgioiTinh.Size = new Size(83, 37);
             cbbgioiTinh.TabIndex = 5;
             // 
             // dtpngaySinh
@@ -229,7 +234,7 @@
             dtpngaySinh.Format = DateTimePickerFormat.Custom;
             dtpngaySinh.Location = new Point(739, 102);
             dtpngaySinh.Name = "dtpngaySinh";
-            dtpngaySinh.Size = new Size(352, 32);
+            dtpngaySinh.Size = new Size(352, 36);
             dtpngaySinh.TabIndex = 8;
             dtpngaySinh.ValueChanged += dtpngaySinh_ValueChanged;
             // 
@@ -300,7 +305,7 @@
             label7.Font = new Font("Tahoma", 12F, FontStyle.Bold);
             label7.Location = new Point(16, 317);
             label7.Name = "label7";
-            label7.Size = new Size(86, 24);
+            label7.Size = new Size(104, 29);
             label7.TabIndex = 10;
             label7.Text = "Địa chỉ:";
             // 
@@ -308,7 +313,7 @@
             // 
             txtdiaChi.Location = new Point(176, 311);
             txtdiaChi.Name = "txtdiaChi";
-            txtdiaChi.Size = new Size(352, 32);
+            txtdiaChi.Size = new Size(352, 36);
             txtdiaChi.TabIndex = 6;
             // 
             // label6
@@ -317,7 +322,7 @@
             label6.Font = new Font("Tahoma", 12F, FontStyle.Bold);
             label6.Location = new Point(15, 262);
             label6.Name = "label6";
-            label6.Size = new Size(102, 24);
+            label6.Size = new Size(123, 29);
             label6.TabIndex = 8;
             label6.Text = "Giới tính:";
             // 
@@ -325,7 +330,7 @@
             // 
             txtCCCD.Location = new Point(176, 203);
             txtCCCD.Name = "txtCCCD";
-            txtCCCD.Size = new Size(352, 32);
+            txtCCCD.Size = new Size(352, 36);
             txtCCCD.TabIndex = 4;
             // 
             // label5
@@ -334,7 +339,7 @@
             label5.Font = new Font("Tahoma", 12F, FontStyle.Bold);
             label5.Location = new Point(15, 209);
             label5.Name = "label5";
-            label5.Size = new Size(71, 24);
+            label5.Size = new Size(88, 29);
             label5.TabIndex = 6;
             label5.Text = "CCCD:";
             // 
@@ -344,7 +349,7 @@
             label4.Font = new Font("Tahoma", 12F, FontStyle.Bold);
             label4.Location = new Point(15, 158);
             label4.Name = "label4";
-            label4.Size = new Size(117, 24);
+            label4.Size = new Size(140, 29);
             label4.TabIndex = 4;
             label4.Text = "Ngày sinh:";
             // 
@@ -352,8 +357,9 @@
             // 
             txthoten.Location = new Point(176, 105);
             txthoten.Name = "txthoten";
-            txthoten.Size = new Size(352, 32);
+            txthoten.Size = new Size(352, 36);
             txthoten.TabIndex = 2;
+            txthoten.TextChanged += txthoten_TextChanged;
             // 
             // label3
             // 
@@ -361,7 +367,7 @@
             label3.Font = new Font("Tahoma", 12F, FontStyle.Bold);
             label3.Location = new Point(15, 111);
             label3.Name = "label3";
-            label3.Size = new Size(87, 24);
+            label3.Size = new Size(106, 29);
             label3.TabIndex = 2;
             label3.Text = "Họ Tên:";
             // 
@@ -371,7 +377,7 @@
             txtMaNV.Location = new Point(176, 47);
             txtMaNV.Name = "txtMaNV";
             txtMaNV.ReadOnly = true;
-            txtMaNV.Size = new Size(83, 32);
+            txtMaNV.Size = new Size(83, 36);
             txtMaNV.TabIndex = 1;
             // 
             // label2
@@ -380,7 +386,7 @@
             label2.Font = new Font("Tahoma", 12F, FontStyle.Bold);
             label2.Location = new Point(16, 57);
             label2.Name = "label2";
-            label2.Size = new Size(82, 24);
+            label2.Size = new Size(99, 29);
             label2.TabIndex = 0;
             label2.Text = "Mã NV:";
             // 
@@ -409,9 +415,13 @@
             dgvDSNhanVien.CellClick += dgvDSNhanVien_CellClick;
             dgvDSNhanVien.CellContentClick += dgvDSNhanVien_CellContentClick;
             // 
+            // errorProvider1
+            // 
+            errorProvider1.ContainerControl = this;
+            // 
             // QuanLyNhanVien
             // 
-            AutoScaleDimensions = new SizeF(9F, 18F);
+            AutoScaleDimensions = new SizeF(11F, 22F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.InactiveCaption;
             ClientSize = new Size(1720, 834);
@@ -428,6 +438,7 @@
             ((System.ComponentModel.ISupportInitialize)pbhinhAnhNV).EndInit();
             groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvDSNhanVien).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -466,5 +477,6 @@
         private TextBox txttaiKhoan;
         private Label label8;
         private TextBox txthinhanh;
+        private ErrorProvider errorProvider1;
     }
 }

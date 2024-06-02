@@ -8,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -22,7 +23,7 @@ namespace QUANLYPHONGKHAM
             InitializeComponent();
             LoadDataUser();
         }
-     
+
 
         public void CauHinnhData()
         {
@@ -44,7 +45,7 @@ namespace QUANLYPHONGKHAM
             dgvDSNhanVien.Columns[9].HeaderText = "Chức vụ";
             dgvDSNhanVien.Columns[10].HeaderText = "Ngày sinh";
 
-          
+
         }
         public void LoadDataUser()
         {
@@ -54,7 +55,7 @@ namespace QUANLYPHONGKHAM
 
         }
 
-       
+
         public void UploadAnhChoNhanVien()
         {
 
@@ -165,12 +166,12 @@ namespace QUANLYPHONGKHAM
             txtMaNV.Text = dgvDSNhanVien.Rows[e.RowIndex].Cells["MaNV"].Value.ToString();
             txthoten.Text = dgvDSNhanVien.Rows[e.RowIndex].Cells["hoten"].Value.ToString();
             dtpngaySinh.Text = dgvDSNhanVien.Rows[e.RowIndex].Cells["ngaySinh"].Value.ToString();
-            cbbgioiTinh.Text=dgvDSNhanVien.Rows[e.RowIndex].Cells["gioiTinh"].Value.ToString();
+            cbbgioiTinh.Text = dgvDSNhanVien.Rows[e.RowIndex].Cells["gioiTinh"].Value.ToString();
             txtdiaChi.Text = dgvDSNhanVien.Rows[e.RowIndex].Cells["diaChi"].Value.ToString();
             txttaiKhoan.Text = dgvDSNhanVien.Rows[e.RowIndex].Cells["taiKhoan"].Value.ToString();
             txtmatKhau.Text = dgvDSNhanVien.Rows[e.RowIndex].Cells["matKhau"].Value.ToString();
             txtCCCD.Text = dgvDSNhanVien.Rows[e.RowIndex].Cells["CCCD"].Value.ToString();
-           cbbchucVu.Text= dgvDSNhanVien.Rows[e.RowIndex].Cells["chucVu"].Value.ToString();
+            cbbchucVu.Text = dgvDSNhanVien.Rows[e.RowIndex].Cells["chucVu"].Value.ToString();
             txthinhanh.Text = dgvDSNhanVien.Rows[e.RowIndex].Cells["hinhAnh"].Value.ToString();
             dtpNgayvaolam.Text = dgvDSNhanVien.Rows[e.RowIndex].Cells["ngayVaoLam"].Value.ToString();
             string appPath = Path.GetDirectoryName(Application.LocalUserAppDataPath) + @"\HinhAnhNVien\";
@@ -230,12 +231,12 @@ namespace QUANLYPHONGKHAM
                 return;
 
             }
-             if (pbhinhAnhNV.Image == null)
-             {
-                 MessageBox.Show("Chon hinh anh !");
-                 return;
+            if (pbhinhAnhNV.Image == null)
+            {
+                MessageBox.Show("Chon hinh anh !");
+                return;
 
-             }
+            }
 
             if (txtMaNV.Text == "")
             {
@@ -250,7 +251,7 @@ namespace QUANLYPHONGKHAM
                     Matkhau = txtmatKhau.Text,
                     CCCD = txtCCCD.Text,
                     Chucvu = cbbchucVu.Text,
-                      HinhAnh = txthinhanh.Text,
+                    HinhAnh = txthinhanh.Text,
                     Ngayvaolam = DateTime.Parse(ngayVaoLam.ToString()),
                 };
                 bool result2 = new NhanVienBUS().AddNewUser(nv);
@@ -262,9 +263,9 @@ namespace QUANLYPHONGKHAM
                         QuanLyNhanVien_Load(sender, e);
                         ClearData();
                     }
-                    catch(Exception ex) 
+                    catch (Exception ex)
                     {
-                        MessageBox.Show("Them that bai do "+ex);
+                        MessageBox.Show("Them that bai do " + ex);
                         QuanLyNhanVien_Load(sender, e);
                     }
                 }
@@ -332,7 +333,7 @@ namespace QUANLYPHONGKHAM
                     Matkhau = txtmatKhau.Text,
                     CCCD = txtCCCD.Text,
                     Chucvu = cbbchucVu.Text,
-                     HinhAnh = txthinhanh.Text,
+                    HinhAnh = txthinhanh.Text,
                     Ngayvaolam = DateTime.Parse(ngayVaoLam.ToString()),
                 };
                 bool result2 = new NhanVienBUS().UpdateUser(nv);
@@ -345,7 +346,7 @@ namespace QUANLYPHONGKHAM
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Cập nhật không thành công do "+ex.Message);
+                        MessageBox.Show("Cập nhật không thành công do " + ex.Message);
                     }
                 }
             }
@@ -371,5 +372,71 @@ namespace QUANLYPHONGKHAM
         {
 
         }
+
+        private void txthoten_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txthoten.Text))
+            {
+                errorProvider1.SetError(txthoten, "Họ tên không được để trống!");
+            }
+            else if (txthoten.Text.Length < 3)
+            {
+                errorProvider1.SetError(txthoten, "Họ tên phải có ít nhất 3 ký tự!");
+            }
+            else if (Regex.IsMatch(txthoten.Text, @"\d"))
+            {
+                errorProvider1.SetError(txthoten, "Họ tên không được chứa số!");
+            }
+            else
+            {
+                errorProvider1.SetError(txthoten, "");
+            }
+        }
+
+        private void txttaiKhoan_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txttaiKhoan.Text))
+            {
+                errorProvider1.SetError(txttaiKhoan, "Tài khoản không được để trống!");
+            }
+            else if (txttaiKhoan.Text.Length < 6 || txttaiKhoan.Text.Length > 24)
+            {
+                errorProvider1.SetError(txttaiKhoan, "Tài khoản phải có từ 6 đến 24 ký tự!");
+            }
+            else if (!Regex.IsMatch(txttaiKhoan.Text, @"^[a-zA-Z0-9]+$"))
+            {
+                errorProvider1.SetError(txttaiKhoan, "Tài khoản chỉ được chứa chữ cái và số!");
+            }
+            else
+            {
+                errorProvider1.SetError(txttaiKhoan, "");
+            }
+        }
+
+        private void txtmatKhau_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtmatKhau.Text))
+            {
+                errorProvider1.SetError(txtmatKhau, "Mật khẩu không được để trống!");
+            }
+            else if (txtmatKhau.Text.Length < 6 || txtmatKhau.Text.Length > 24)
+            {
+                errorProvider1.SetError(txtmatKhau, "Mật khẩu phải có từ 6 đến 24 ký tự!");
+            }
+            else if (!Regex.IsMatch(txtmatKhau.Text, @"^[a-zA-Z0-9]+$"))
+            {
+                errorProvider1.SetError(txtmatKhau, "Mật khẩu chỉ được chứa chữ cái và số!");
+            }
+            else if (txtmatKhau.Text.Any(char.IsWhiteSpace))
+            {
+                errorProvider1.SetError(txtmatKhau, "Mật khẩu không được chứa khoảng trắng!");
+            }
+            else
+            {
+                errorProvider1.SetError(txtmatKhau, "");
+            }
+        }
+
+
     }
 }
